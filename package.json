@@ -1,0 +1,16 @@
+{
+  "name": "k8s-autoscaling-job-processor",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "service-a-job-submitter",
+    "service-b-worker",
+    "service-c-stats"
+  ],
+  "scripts": {
+    "postinstall": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}
