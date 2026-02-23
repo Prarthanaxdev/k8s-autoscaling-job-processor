@@ -62,21 +62,21 @@ Metrics:
 
 ```mermaid
 flowchart TD
-    Client((Client))
-    A[Service A<br>Job Submitter]
-    Redis[(Redis Queue)]
-    B[Service B<br>Worker(s)]
-    C[Service C<br>Stats/Aggregator]
+  Client((Client))
+  A[Service A: Job Submitter]
+  Redis[(Redis Queue)]
+  B[Service B: Worker(s)]
+  C[Service C: Stats/Aggregator]
 
-    Client -->|Submit Job| A
-    A -->|Push Job| Redis
-    B -->|Pull & Process Job| Redis
-    B -->|Save Result| Redis
-    C -->|Read Stats| Redis
-    Client -->|Get Stats| C
+  Client -->|Submit Job| A
+  A -->|Push Job| Redis
+  B -->|Pull & Process Job| Redis
+  B -->|Save Result| Redis
+  C -->|Read Stats| Redis
+  Client -->|Get Stats| C
 
-    %% Monitoring
-    B -- Metrics --> Prometheus
-    C -- Metrics --> Prometheus
-    Prometheus -- Dashboards --> Grafana
+  %% Monitoring
+  B -- Metrics --> Prometheus
+  C -- Metrics --> Prometheus
+  Prometheus -- Dashboards --> Grafana
 ```
