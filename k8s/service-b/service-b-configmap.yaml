@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-b-config
+data:
+  PORT: "3000"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  METRICS_PORT: "9100"
+  QUEUE_NAME: "job_queue"
+  REDIS_URL: "redis://:redis_password@redis:6379"
