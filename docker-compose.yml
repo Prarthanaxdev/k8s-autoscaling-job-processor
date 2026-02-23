@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  service-a-job-submitter:
+    build: ./service-a-job-submitter
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  service-b-worker:
+    build: ./service-b-worker
+    ports:
+      - "9100:9100"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  service-c-stats:
+    build: ./service-c-stats
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
