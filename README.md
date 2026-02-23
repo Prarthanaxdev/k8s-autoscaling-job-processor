@@ -65,7 +65,7 @@ flowchart TD
   Client((Client))
   A[Service A: Job Submitter]
   Redis[(Redis Queue)]
-  B[Service B: Worker(s)]
+  B[Service B: Worker]
   C[Service C: Stats/Aggregator]
 
   Client -->|Submit Job| A
