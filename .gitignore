@@ -1,0 +1,10 @@
+# Root gitignore
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+.idea/
+.vscode/
+# Ignore real secrets from being committed to git
+k8s/redis/redis-secret.yaml
