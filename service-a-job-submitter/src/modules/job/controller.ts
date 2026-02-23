@@ -19,6 +19,9 @@ export const submitJob = async (req: Request, res: Response) => {
   const jobData: JobData = parseResult.data;
   const jobId = uuidv4();
   try {
+    if (!redisClient.isOpen) {
+      await redisClient.connect();
+    }
     await redisClient.rPush(config.QUEUE_NAME, jobId);
     await redisClient.hSet(`job:${jobId}`, {
       status: 'queued',
@@ -42,6 +45,9 @@ export const submitJob = async (req: Request, res: Response) => {
 export const getJobStatus = async (req: Request, res: Response) => {
   const jobId = req.params.id;
   try {
+    if (!redisClient.isOpen) {
+      await redisClient.connect();
+    }
     const job = await redisClient.hGetAll(`job:${jobId}`);
     if (!job || Object.keys(job).length === 0) {
       return res.status(404).json({ error: 'Job not found' });

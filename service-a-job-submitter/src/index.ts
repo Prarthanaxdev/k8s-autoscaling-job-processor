@@ -29,15 +29,6 @@ app.use(morganMiddleware as any);
 // Swagger API docs route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Basic rate limiter: 100 requests per 15 minutes per IP
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-app.use(limiter);
-
 app.use(apiKeyAuth);
 // Job routes
 app.use('/api/jobs', jobRoutes);
